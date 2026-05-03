@@ -18,17 +18,17 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
-
+    //открываем главную страницу
     public void open() {
         driver.get("https://saucedemo.com/");
     }
-
+    //логинимся под обычным юзером
     public void login(String name, String password) {
         driver.findElement(USERNAME_FIELD).sendKeys(name);
         driver.findElement(PASSWORD_FIELD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
     }
-
+    //ошибки при пустых полях
     public String getErrorMessage() {
         return driver.findElement(ERROR_MESSAGE).getText();
     }

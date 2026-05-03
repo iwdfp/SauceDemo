@@ -51,7 +51,7 @@ public class ProductsPage extends BasePage {
     public String getActiveOptionText() {
         return driver.findElement(By.cssSelector("[data-test=active-option]")).getText();
     }
-    //сделать логаут из "бургер" меню. добавлено ожидание открытия бургер меню
+    //сделать логаут из "бургер" меню. добавлено ожидание открытия "бургер" меню
     public void logoutBurger() throws InterruptedException {
         driver.findElement(By.className("bm-burger-button")).click();
         Thread.sleep(1000);
