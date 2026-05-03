@@ -6,7 +6,10 @@ import static org.testng.Assert.assertEquals;
 
 public class CartTest extends BaseTest {
 
-    @Test
+    @Test(
+            testName = "Проверка кнопки 'Continue Shopping' на странице 'Корзина'",
+            description = "Нажать кнопку 'Continue Shopping' на странице 'Корзина'"
+    )
     public void btnCntnShp() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -15,7 +18,10 @@ public class CartTest extends BaseTest {
         assertEquals(productsPage.getTitle(), "Products");
     }
 
-    @Test
+    @Test(
+            testName = "Проверка кнопки 'Checkout' на странице 'Корзина'",
+            description = "Нажать кнопку 'Checkout' на странице 'Корзина'"
+    )
     public void btnCancelCheckout() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
