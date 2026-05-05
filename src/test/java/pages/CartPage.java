@@ -22,5 +22,4 @@ public class CartPage extends BasePage {
     public String getTitleCart() {
         return driver.findElement(TITLE).getText();
     }
-
 }
