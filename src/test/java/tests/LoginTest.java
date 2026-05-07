@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -16,22 +17,37 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test (
-            dataProvider = "Тестовые данные для проверки негативных сценариев авторизации пользователя",
+    @Test (dataProvider = "Тестовые данные для проверки негативных сценариев авторизации пользователя",
             testName = "Проверка авторизации с невалидными данными",
-            description = "Проверяем авторизацию с пустыми полями и невалидными данными"
-    )
+            description = "Проверяем авторизацию с пустыми полями и невалидными данными")
+    @Description ("Проверка авторизации с невалидными данными")
+    @Epic("Regression")
+    @Feature("Login in Sauce Demo")
+    @Story("Negative Login")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link("https://saucedemo.com/")
+    @TmsLink("SDTest-5060")
+    @Issue("Test-7891")
+    @Flaky
+    @Owner("Danil")
     public void negativeLogin(String name, String password, String errorMessage) {
         loginPage.open();
         loginPage.login(name, password);
         assertEquals(loginPage.getErrorMessage(), errorMessage);
     }
 
-    @Test (
-            testName = "Авторизация с валидными данными",
+    @Test (testName = "Авторизация с валидными данными",
             description = "Авторизуемся с валидными данными под обычного пользователя",
-            groups = {"smoke"}
-    )
+            groups = {"smoke"})
+    @Description ("Авторизация с валидными данными")
+    @Epic("Regression")
+    @Feature("Login in Sauce Demo")
+    @Story("Positive Login")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link("https://saucedemo.com/")
+    @TmsLink("SDTest-5061")
+    @Issue("Test-7892")
+    @Owner("Danil")
     public void checkLoginWithPositiveCred() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

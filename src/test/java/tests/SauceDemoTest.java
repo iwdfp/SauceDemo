@@ -1,13 +1,9 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 /*
 a. Залогиниться
@@ -18,71 +14,74 @@ d. Проверить (assertEquals) стоимость товара и его �
 
 public class SauceDemoTest extends BaseTest {
 
-    int position = 3;
-    int position1 = 4;
-    int position2 = 1;
+    String itemName = "Sauce Labs Backpack";
+    String itemName1 = "Sauce Labs Bike Light";
 
     @Test
+    @Description("Проверить соответствие имени и цены добавленного товара")
+    @Epic("Regression")
+    @Feature("SauceTests in Sauce Demo")
+    @Story("Tests")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SDTest-5066")
+    @Issue("Test-7897")
+    @Owner("Danil")
     public void checkAddBucketItem() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        //запоминаем название и цену товара, который кладем в коризну
-        String itemName = driver.findElements(By.className("inventory_item_name"))
-                .get(position - 1).getText();
-        String itemPrice = driver.findElements(By.className("inventory_item_price"))
-                .get(position - 1).getText();
-        //добавляем товар в корзину и переходим в нее
-        productsPage.addItemBucket(position);
+        productsPage.addItemCart(itemName);
         productsPage.goToCart();
-        //сравниваем товар и цену
-        assertEquals(driver.findElement(By.className("inventory_item_name"))
-                .getText(), itemName);
-        assertEquals(driver.findElement(By.className("inventory_item_price"))
-                .getText(), itemPrice);
+        assertEquals(cartPage.getCartItemName(itemName), itemName);
+        assertEquals(cartPage.getCartItemPrice(itemName), "$29.99");
     }
 
     @Test
+    @Description("Проверить соответствие имени и цены добавленных товаров")
+    @Epic("Regression")
+    @Feature("SauceTests in Sauce Demo")
+    @Story("Tests")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SDTest-5067")
+    @Issue("Test-7898")
+    @Owner("Danil")
     public void checkAddBucketSomeItems() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-
-        List<WebElement> names = driver.findElements(By.className("inventory_item_name"));
-        List<WebElement> prices = driver.findElements(By.className("inventory_item_price"));
-
-        String itemName = names.get(position - 1).getText();
-        String itemPrice = prices.get(position - 1).getText();
-        String itemName1 = names.get(position1 - 1).getText();
-        String itemPrice1 = prices.get(position1 - 1).getText();
-        String itemName2 = names.get(position2 - 1).getText();
-        String itemPrice2 = prices.get(position2 - 1).getText();
-
-        productsPage.addItemBucket(position);
-        productsPage.addItemBucket(position1);
-        productsPage.addItemBucket(position2);
+        productsPage.addItemCart(itemName);
+        productsPage.addItemCart(itemName1);
         productsPage.goToCart();
-
-        List<WebElement> cartNames = driver.findElements(By.className("inventory_item_name"));
-        List<WebElement> cartPrices = driver.findElements(By.className("inventory_item_price"));
-        assertEquals(cartNames.get(0).getText(), itemName);
-        assertEquals(cartPrices.get(0).getText(), itemPrice);
-        assertEquals(cartNames.get(1).getText(), itemName1);
-        assertEquals(cartPrices.get(1).getText(), itemPrice1);
-        assertEquals(cartNames.get(2).getText(), itemName2);
-        assertEquals(cartPrices.get(2).getText(), itemPrice2);
+        assertEquals(cartPage.getCartItemName(itemName), itemName);
+        assertEquals(cartPage.getCartItemPrice(itemName), "$29.99");
+        assertEquals(cartPage.getCartItemName(itemName1), itemName1);
+        assertEquals(cartPage.getCartItemPrice(itemName1), "$9.99");
     }
 
     @Test
+    @Description("Проверить нажатие кнопки Remove")
+    @Epic("Regression")
+    @Feature("SauceTests in Sauce Demo")
+    @Story("Tests")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SDTest-5068")
+    @Issue("Test-7899")
+    @Owner("Danil")
     public void checkRemoveItem() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-            assertEquals(productsPage.getAddCartMessage(position), "Add to cart");
-            productsPage.addItemBucket(position);
-            assertEquals(productsPage.getRemoveMessage(), "Remove");
-            productsPage.removeItem(position);
-            assertEquals(productsPage.getAddCartMessage(position), "Add to cart");
+        productsPage.addItemCart(itemName);
+        productsPage.removeItemCart(itemName);
+        assertEquals(productsPage.getButtonText(itemName), "Add to cart");
     }
 
     @Test
+    @Description("Проверка выбора сортировки")
+    @Epic("Regression")
+    @Feature("SauceTests in Sauce Demo")
+    @Story("Tests")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SDTest-5069")
+    @Issue("Test-7900")
+    @Owner("Danil")
     public void checkSortingZA() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -96,6 +95,14 @@ public class SauceDemoTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка выхода из аккаунта через бургер меню")
+    @Epic("Regression")
+    @Feature("SauceTests in Sauce Demo")
+    @Story("Tests")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SDTest-5069")
+    @Issue("Test-7900")
+    @Owner("Danil")
     public void logout() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

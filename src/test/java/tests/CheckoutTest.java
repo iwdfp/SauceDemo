@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -16,29 +17,43 @@ public class CheckoutTest extends BaseTest {
         };
     }
 
-    @Test (
-            dataProvider = "Тестовые данные для проверки негативных сценариев оформления заказа",
+    String itemName = "Sauce Labs Backpack";
+
+    @Test (dataProvider = "Тестовые данные для проверки негативных сценариев оформления заказа",
             testName = "Проверка оформления заказа с невалидными данными",
-            description = "Проверяем оформление заказа с пустыми полями: имя, фамилия, почтовый индекс"
-    )
+            description = "Проверяем оформление заказа с пустыми полями: имя, фамилия, почтовый индекс")
+    @Description("Тестовые данные для проверки негативных сценариев оформления заказа")
+    @Epic("Regression")
+    @Feature("Checkout in Sauce Demo")
+    @Story("Checkout")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SDTest-5064")
+    @Issue("Test-7895")
+    @Owner("Danil")
     public void negativeOrder(String firstName, String lastName, String postalCode, String errorMessage) {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.addItemBucket(1);
+        productsPage.addItemCart(itemName);
         productsPage.goToCart();
         cartPage.goCheckout();
         checkoutPage.makeOrder(firstName, lastName, postalCode);
         assertEquals(checkoutPage.getErrorMessage(), errorMessage);
     }
 
-    @Test(
-            testName = "Сделать заказ с валидными данными",
-            description = "Сделать заказ с полностью заполненными валидными данными"
-    )
+    @Test(testName = "Сделать заказ с валидными данными",
+            description = "Сделать заказ с полностью заполненными валидными данными")
+    @Description("Сделать заказ с валидными данными")
+    @Epic("Regression")
+    @Feature("Checkout in Sauce Demo")
+    @Story("Checkout")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SDTest-5065")
+    @Issue("Test-7896")
+    @Owner("Danil")
     public void placeOrder() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.addItemBucket(1);
+        productsPage.addItemCart(itemName);
         productsPage.goToCart();
         cartPage.goCheckout();
         checkoutPage.makeOrder("Michael", "Cerber", "673-201");
