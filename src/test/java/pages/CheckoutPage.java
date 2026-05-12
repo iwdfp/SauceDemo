@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -15,22 +16,22 @@ public class CheckoutPage extends BasePage {
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
-    //заполнение полей для оформления заказа с нажатием
+    @Step("Заполняем поля для оформления заказа. Имя: '{firstName}', Фамилия: '{lastName}', Постал Код: '{postalCode}'")
     public void makeOrder(String firstName, String lastName, String postalCode) {
         driver.findElement(FIRST_NAME_FIELD).sendKeys(firstName);
         driver.findElement(LAST_NAME_FIELD).sendKeys(lastName);
         driver.findElement(ZIP_POSTAL_CODE).sendKeys(postalCode);
         driver.findElement(ORDER_BUTTON).click();
     }
-    //проверка, что мы на странице "оформление заказа"
+    @Step("Проверяем, что мы на странице оформления заказа")
     public String getTitleCheckout() {
         return driver.findElement(TITLE).getText();
     }
-    //проверка ошибки при незаполненных полях
+    @Step("Проверяем ошибку, которая появляется при незаполненных полях")
     public String getErrorMessage() {
         return driver.findElement(ERROR_MESSAGE).getText();
     }
-    //кнопка для возвращения на страницу "корзина"
+    @Step("Возвращаемся на страницу 'корзина'")
     public void backToCart() {
         driver.findElement(By.cssSelector("[data-test='cancel']")).click();
     }
