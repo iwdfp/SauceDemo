@@ -7,11 +7,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.CartPage;
 import pages.CheckoutPage;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.AllureUtils;
 import utils.TestListener;
 
 import java.util.HashMap;
@@ -56,7 +58,10 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            AllureUtils.takeScreenshot(driver);
+        }
         driver.quit();
     }
 }

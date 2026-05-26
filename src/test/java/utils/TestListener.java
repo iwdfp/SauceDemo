@@ -25,9 +25,6 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         System.out.printf("======================================== FAILED TEST %s Duration: %ss ========================================%n", iTestResult.getName(),
                 getExecutionTime(iTestResult));
-
-        WebDriver driver = (WebDriver) iTestResult.getTestContext().getAttribute("driver");
-        AllureUtils.takeScreenshot(driver);
     }
 
     @Override
