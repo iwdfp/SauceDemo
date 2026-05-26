@@ -19,7 +19,7 @@ public class CartTest extends BaseTest {
     @Owner("Danil")
     public void btnCntnShp() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.goToCart();
         cartPage.backShopping();
         assertEquals(productsPage.getTitle(), "Products");
@@ -37,7 +37,7 @@ public class CartTest extends BaseTest {
     @Owner("Danil")
     public void btnCancelCheckout() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.goToCart();
         cartPage.goCheckout();
         checkoutPage.backToCart();

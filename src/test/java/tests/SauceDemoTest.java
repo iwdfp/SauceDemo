@@ -28,7 +28,7 @@ public class SauceDemoTest extends BaseTest {
     @Owner("Danil")
     public void checkAddBucketItem() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addItemCart(itemName);
         productsPage.goToCart();
         assertEquals(cartPage.getCartItemName(itemName), itemName);
@@ -46,7 +46,7 @@ public class SauceDemoTest extends BaseTest {
     @Owner("Danil")
     public void checkAddBucketSomeItems() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addItemCart(itemName);
         productsPage.addItemCart(itemName1);
         productsPage.goToCart();
@@ -67,7 +67,7 @@ public class SauceDemoTest extends BaseTest {
     @Owner("Danil")
     public void checkRemoveItem() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addItemCart(itemName);
         productsPage.removeItemCart(itemName);
         assertEquals(productsPage.getButtonText(itemName), "Add to cart");
@@ -84,7 +84,7 @@ public class SauceDemoTest extends BaseTest {
 //    @Owner("Danil")
 //    public void checkSortingZA() {
 //        loginPage.open();
-//        loginPage.login("standard_user", "secret_sauce");
+//        loginPage.login(user, password);
 //        assertEquals(productsPage.getActiveOptionText(), "Name (A to Z)");
 //        productsPage.setDropdown("za");
 //        assertEquals(productsPage.getActiveOptionText(), "Name (Z to A)");
@@ -105,7 +105,7 @@ public class SauceDemoTest extends BaseTest {
     @Owner("Danil")
     public void logout() throws InterruptedException {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         assertEquals(productsPage.getTitle(), "Products");
         productsPage.logoutBurger();
         assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/");

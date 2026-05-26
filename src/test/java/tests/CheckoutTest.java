@@ -32,7 +32,7 @@ public class CheckoutTest extends BaseTest {
     @Owner("Danil")
     public void negativeOrder(String firstName, String lastName, String postalCode, String errorMessage) {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addItemCart(itemName);
         productsPage.goToCart();
         cartPage.goCheckout();
@@ -52,7 +52,7 @@ public class CheckoutTest extends BaseTest {
     @Owner("Danil")
     public void placeOrder() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addItemCart(itemName);
         productsPage.goToCart();
         cartPage.goCheckout();
@@ -66,7 +66,7 @@ public class CheckoutTest extends BaseTest {
 //    )
 //    public void emptyFirstName() {
 //        loginPage.open();
-//        loginPage.login("standard_user", "secret_sauce");
+//        loginPage.login(user, password);
 //        productsPage.addItemBucket(1);
 //        productsPage.goToCart();
 //        cartPage.goCheckout();
@@ -80,7 +80,7 @@ public class CheckoutTest extends BaseTest {
 //    )
 //    public void emptyLastName() {
 //        loginPage.open();
-//        loginPage.login("standard_user", "secret_sauce");
+//        loginPage.login(user, password);
 //        productsPage.addItemBucket(1);
 //        productsPage.goToCart();
 //        cartPage.goCheckout();
@@ -94,7 +94,7 @@ public class CheckoutTest extends BaseTest {
 //    )
 //    public void emptyPostalCode() {
 //        loginPage.open();
-//        loginPage.login("standard_user", "secret_sauce");
+//        loginPage.login(user, password);
 //        productsPage.addItemBucket(1);
 //        productsPage.goToCart();
 //        cartPage.goCheckout();

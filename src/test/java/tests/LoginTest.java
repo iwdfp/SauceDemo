@@ -11,8 +11,8 @@ public class LoginTest extends BaseTest {
     @DataProvider(name = "Тестовые данные для проверки негативных сценариев авторизации пользователя")
     public Object[][] invalidLogin() {
         return new Object[][] {
-                {"", "secret_sauce", "Epic sadface: Username is required"},
-                {"standard_user", "", "Epic sadface: Password is required"},
+                {"", password, "Epic sadface: Username is required"},
+                {user, "", "Epic sadface: Password is required"},
                 {"invalid", "invalid", "Epic sadface: Username and password do not match any user in this service"}
         };
     }
@@ -50,21 +50,21 @@ public class LoginTest extends BaseTest {
     @Owner("Danil")
     public void checkLoginWithPositiveCred() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         assertEquals(productsPage.getTitle(), "Products");
     }
 
 //    @Test
 //    public void checkLoginWithEmptyPassword() {
 //        loginPage.open();
-//        loginPage.login("standard_user", "");
+//        loginPage.login(user, "");
 //        assertEquals(loginPage.getErrorMessage(), "Epic sadface: Password is required");
 //    }
 //
 //    @Test
 //    public void checkLoginWithEmptyLogin() {
 //        loginPage.open();
-//        loginPage.login("", "secret_sauce");
+//        loginPage.login("", password);
 //        assertEquals(loginPage.getErrorMessage(), "Epic sadface: Username is required");
 //    }
 //

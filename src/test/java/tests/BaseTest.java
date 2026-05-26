@@ -27,6 +27,9 @@ public class BaseTest {
     CartPage cartPage;
     CheckoutPage checkoutPage;
 
+    protected String user = System.getProperty("user");
+    protected String password = System.getProperty("password");
+
     @Parameters({"browser"})
     @BeforeMethod (alwaysRun = true, description = "Настройка браузера")
     public void setUp(@Optional("chrome") String browser, ITestContext iTestContext) {
