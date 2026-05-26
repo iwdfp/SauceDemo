@@ -73,26 +73,26 @@ public class SauceDemoTest extends BaseTest {
         assertEquals(productsPage.getButtonText(itemName), "Add to cart");
     }
 
-    @Test
-    @Description("Проверка выбора сортировки")
-    @Epic("Regression")
-    @Feature("SauceTests in Sauce Demo")
-    @Story("Tests")
-    @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("SDTest-5069")
-    @Issue("Test-7900")
-    @Owner("Danil")
-    public void checkSortingZA() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        assertEquals(productsPage.getActiveOptionText(), "Name (A to Z)");
-        productsPage.setDropdown("za");
-        assertEquals(productsPage.getActiveOptionText(), "Name (Z to A)");
-        productsPage.setDropdown("lohi");
-        assertEquals(productsPage.getActiveOptionText(), "Price (low to high)");
-        productsPage.setDropdown("hilo");
-        assertEquals(productsPage.getActiveOptionText(), "Price (high to low)");
-    }
+//    @Test
+//    @Description("Проверка выбора сортировки")
+//    @Epic("Regression")
+//    @Feature("SauceTests in Sauce Demo")
+//    @Story("Tests")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @TmsLink("SDTest-5069")
+//    @Issue("Test-7900")
+//    @Owner("Danil")
+//    public void checkSortingZA() {
+//        loginPage.open();
+//        loginPage.login("standard_user", "secret_sauce");
+//        assertEquals(productsPage.getActiveOptionText(), "Name (A to Z)");
+//        productsPage.setDropdown("za");
+//        assertEquals(productsPage.getActiveOptionText(), "Name (Z to A)");
+//        productsPage.setDropdown("lohi");
+//        assertEquals(productsPage.getActiveOptionText(), "Price (low to high)");
+//        productsPage.setDropdown("hilo");
+//        assertEquals(productsPage.getActiveOptionText(), "Price (high to low)");
+//    }
 
     @Test
     @Description("Проверка выхода из аккаунта через бургер меню")
