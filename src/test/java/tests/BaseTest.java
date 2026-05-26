@@ -14,6 +14,7 @@ import pages.CheckoutPage;
 import pages.LoginPage;
 import pages.ProductsPage;
 import utils.AllureUtils;
+import utils.PropertyReader;
 import utils.TestListener;
 
 import java.util.HashMap;
@@ -27,8 +28,8 @@ public class BaseTest {
     CartPage cartPage;
     CheckoutPage checkoutPage;
 
-    protected String user = System.getProperty("user");
-    protected String password = System.getProperty("password");
+    protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected String password = System.getProperty("password", PropertyReader.getProperty("pass"));
 
     @Parameters({"browser"})
     @BeforeMethod (alwaysRun = true, description = "Настройка браузера")
